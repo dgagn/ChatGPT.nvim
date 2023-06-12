@@ -159,10 +159,6 @@ local loadApiKey = function(command)
       command = cmd[1],
       args = vim.list_slice(cmd, 2, #cmd),
       on_exit = function(j, exit_code)
-        if exit_code ~= 0 then
-          logger.warn("Config 'api_key_cmd' did not return a value when executed")
-          return
-        end
         Api.OPENAI_API_KEY = j:result()[1]:gsub("%s+$", "")
       end,
     })
